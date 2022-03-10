@@ -368,7 +368,7 @@ public class TaskExecutor {
         /**
          * 该任务正在执行，使用节点配合心跳发布停用通知
          */
-        int n = nodeRepository.updateNotifyInfo(NotifyCmd.STOP_TASK,String.valueOf(taskId));
+        int n = nodeRepository.updateNotifyInfo(task.getNodeId(),NotifyCmd.STOP_TASK,String.valueOf(taskId));
         return n > 0;
     }
 
@@ -401,7 +401,7 @@ public class TaskExecutor {
         /**
          * 重置通知信息，避免重复执行停用通知
          */
-        nodeRepository.resetNotifyInfo(NotifyCmd.STOP_TASK);
+        nodeRepository.resetNotifyInfo(task.getNodeId(),NotifyCmd.STOP_TASK);
         return flag;
     }
 }
